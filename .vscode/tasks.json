@@ -1,0 +1,81 @@
+{
+    // Tasks used by Lucian D. Crainic to Build and Configure Projects.
+    // Used mainly for Cpp projects that require building with Conan.
+
+    //TODO: configure and build without script.
+    
+    "version": "2.0.0",
+    "inputs": [
+          {
+                "id": "parameter1",
+                "type": "promptString",
+                "default": "",
+                "description": "[r] - Removes previous Build Directory. [enter] to SKIP param.",
+          },
+          {
+                "id": "parameter2",
+                "type": "promptString",
+                "default": "",
+                "description": "[d] - Build with Debug mode turned ON. [enter] to SKIP param.",
+          }
+    ],
+    "tasks": [
+          {
+                "label": "Build TAS",
+                "type": "shell",
+                "command": "source /home/ldcrainic/Work/Conan/env/bin/activate && conan user ldcrainic -r gitlab -p $GITLAB_CONAN_PASSWORD && ./script/configure.sh -t ${input:parameter1:+-}${input:parameter1} ${input:parameter2:+-}${input:parameter2}",
+                "options": {
+                      "cwd": "${workspaceFolder}"
+                },
+                "problemMatcher": [],
+                "icon": {
+                      "id": "file-code",
+                      "color": "terminal.ansiBlue"
+                },
+                "presentation": {
+                      "reveal": "always",
+                      "focus": true,
+                      "panel": "shared",
+                },
+                "detail": "[configure.sh] - Build Test Automation Suite."
+          },
+          {
+                "label": "Build SUT",
+                "type": "shell",
+                "command": "source /home/ldcrainic/Work/Conan/env/bin/activate && conan user ldcrainic -r gitlab -p $GITLAB_CONAN_PASSWORD && ./script/configure.sh -s ${input:parameter1:+-}${input:parameter1} ${input:parameter2:+-}${input:parameter2}",
+                "options": {
+                      "cwd": "${workspaceFolder}"
+                },
+                "problemMatcher": [],
+                "icon": {
+                      "id": "wrench",
+                      "color": "terminal.ansiYellow"
+                },
+                "presentation": {
+                      "reveal": "always",
+                      "focus": true,
+                      "panel": "shared",
+                },
+                "detail": "[configure.sh] - Build Software Under Test."
+          },
+          {
+                "label": "Build ALL",
+                "type": "shell",
+                "command": "source /home/ldcrainic/Work/Conan/env/bin/activate && conan user ldcrainic -r gitlab -p $GITLAB_CONAN_PASSWORD && ./script/configure.sh -a ${input:parameter1:+-}${input:parameter1} ${input:parameter2:+-}${input:parameter2}",
+                "options": {
+                      "cwd": "${workspaceFolder}"
+                },
+                "problemMatcher": [],
+                "icon": {
+                      "id": "layers",
+                      "color": "terminal.ansiGreen" 
+                },
+                "presentation": {
+                      "reveal": "always",
+                      "focus": true,
+                      "panel": "shared",
+                },
+                "detail": "[configure.sh] - Build All Components (SUT and TAS)."
+          }
+    ]
+}
