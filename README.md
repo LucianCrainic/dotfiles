@@ -1,0 +1,2 @@
+🐈 Lucian D. Crainic - Dotfiles 💻
+> The following directory contains my personal dotfiles/settings for my daily tools that i use while working as a Software Test Engineer and Studying for my MSc in Computer Science.

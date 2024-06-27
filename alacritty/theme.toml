@@ -1,0 +1,26 @@
+# Gruber Darker Theme for Alacritty
+# Author: Lucian Dorin Crainic
+
+[colors.primary]
+background = '#181818'
+foreground = '#e4e4ef'
+
+[colors.normal]
+black      = '#181818'
+red        = '#f43841'
+green      = '#73c936'
+yellow     = '#ffdd33'
+blue       = '#96a6c8'
+magenta    = '#9e95c7'
+cyan       = '#95a99f'
+white      = '#fffeff'
+
+[colors.bright]
+black      = '#6c6c66'
+red        = '#f43841'
+green      = '#73c936'
+yellow     = '#ffdd33'
+blue       = '#96a6c8'
+magenta    = '#9e95c7'
+cyan       = '#95a99f'
+white      = '#fffeff'

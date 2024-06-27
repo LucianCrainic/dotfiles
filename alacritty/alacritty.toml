@@ -1,0 +1,26 @@
+import = [
+	"~/.config/alacritty/theme.toml"
+]
+
+# Window settings
+[window]
+dimensions = { columns = 120, lines = 120 }
+position = "None" 
+padding = { x = 20, y = 20 }  
+dynamic_padding = false  
+decorations = "Buttonless"  
+opacity = 1.0 
+startup_mode = "Windowed"  
+title = "Alacritty"  
+dynamic_title = false
+
+# Font settings
+[font]
+normal = { family = "Iosevka Nerd Font", style = "Bold" }  
+bold = { style = "Bold" } 
+italic = { style = "Italic" }  
+bold_italic = { style = "Bold Italic" } 
+
+size = 18.0
+offset = { x = 0, y = 0 }  # Default: x = 0, y = 0
+glyph_offset = { x = 0, y = 0 }  # Default: x = 0, y = 0
