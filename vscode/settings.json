@@ -1,0 +1,46 @@
+{    
+
+    // [LATEX]
+    // - The following are VSCode settings for LaTeX and Tectonic.
+    "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.recipe.default": "tectonic",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "tectonic",
+            "tools": [
+                "tectonic-biber",
+                "tectonic"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "args": [
+                "-X",
+                "compile",
+                "%DOCFILE_EXT%",
+                "--synctex",
+                "--print"
+            ],
+            "command": "tectonic",
+            "env": {},
+            "name": "tectonic"
+        },
+        {
+            "args": [
+                "-X",
+                "compile",
+                "%DOCFILE_EXT%",
+                "-k",
+                "--reruns",
+                "0"
+            ],
+            "command": "tectonic",
+            "env": {},
+            "name": "tectonic-biber"
+        }
+    ],
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "latex-workshop.view.pdf.viewer": "tab",
+}
