@@ -1,46 +1,71 @@
-{    
+{
+    // [FONT SETTINGS] 
+    "editor.fontFamily": "ZedMono Nerd Font",    
+    "editor.fontWeight": "800",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 15,
+    
+    //  [TERMINAL SETTINGS]
+    "terminal.integrated.fontFamily": "ZedMono Nerd Font",
+    "terminal.integrated.fontWeight": "800",
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.tabs.defaultIcon": "terminal-tmux",
+    "terminal.integrated.tabs.defaultColor": "terminal.ansiGreen",
+    "terminal.integrated.cursorStyle": "underline",
+    "terminal.integrated.cursorStyleInactive": "none",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorWidth": 3,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.tabs.location": "left",
+    "terminal.integrated.scrollback": 100000,
+    "terminal.integrated.gpuAcceleration": "on",
+    
+    // [VISUAL SETTINGS]
+    "editor.smoothScrolling": true,
+    "editor.minimap.enabled": false,
+    // "editor.scrollbar.vertical": "hidden",
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "hidden",
+    "window.commandCenter": false,
+    "window.title": "${folderName}",
+    "workbench.sideBar.location": "right",
+    "workbench.list.smoothScrolling": true,
+    "workbench.activityBar.location": "hidden",
+    
+    
+    // [MISC SETTINGS]
+    "window.openFilesInNewWindow": "on",
+    "window.zoomPerWindow": true,
+    "workbench.tree.indent": 10,      
+    "workbench.tree.renderIndentGuides": "none",
+    "workbench.editor.showIcons": false,
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.enablePreview": false,
+   
+    
+    "explorer.autoReveal": false,
 
-    // [LATEX]
-    // - The following are VSCode settings for LaTeX and Tectonic.
-    "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
-    "latex-workshop.latex.autoBuild.run": "onSave",
-    "latex-workshop.latex.recipe.default": "tectonic",
-    "latex-workshop.latex.recipes": [
-        {
-            "name": "tectonic",
-            "tools": [
-                "tectonic-biber",
-                "tectonic"
-            ]
-        }
+    // [THEME SETTINGS]    
+    "workbench.colorTheme": "Tsoding Emacs Gruber Minimal",
+    "workbench.iconTheme": "catppuccin noctis icons",
+    "cmake.showOptionsMovedNotification": false,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
     ],
-    "latex-workshop.latex.tools": [
-        {
-            "args": [
-                "-X",
-                "compile",
-                "%DOCFILE_EXT%",
-                "--synctex",
-                "--print"
-            ],
-            "command": "tectonic",
-            "env": {},
-            "name": "tectonic"
-        },
-        {
-            "args": [
-                "-X",
-                "compile",
-                "%DOCFILE_EXT%",
-                "-k",
-                "--reruns",
-                "0"
-            ],
-            "command": "tectonic",
-            "env": {},
-            "name": "tectonic-biber"
-        }
-    ],
-    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
-    "latex-workshop.view.pdf.viewer": "tab",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    //todo create my own theme starting from this colors
+    "editor.tokenColorCustomizations": {
+        "comments": "#393A3F",
+        "keywords": "#F8E472",
+        "strings": "#7D9B5D",
+        //"variables": "#FF0000"
+    },
+    // [CLANGD SETTINGS]    
+    "clangd.path": "/home/ldcrainic/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/18.1.3/clangd_18.1.3/bin/clangd",
+    "clangd.inactiveRegions.opacity": 0.55,
+    "clangd.inactiveRegions.useBackgroundHighlight": true,
+    "catppuccin-noctis-icons.hidesExplorerArrows": false,
 }
