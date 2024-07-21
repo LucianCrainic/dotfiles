@@ -1,10 +1,12 @@
 {
     // [FONT SETTINGS] 
     "editor.fontFamily": "ZedMono Nerd Font",    
-    "editor.fontWeight": "800",
+    "editor.fontWeight": "700",
     "editor.fontLigatures": true,
     "editor.fontSize": 15,
     
+    "window.zoomLevel": 1,
+
     //  [TERMINAL SETTINGS]
     "terminal.integrated.fontFamily": "ZedMono Nerd Font",
     "terminal.integrated.fontWeight": "800",
@@ -13,7 +15,6 @@
     "terminal.integrated.tabs.defaultColor": "terminal.ansiGreen",
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.cursorStyleInactive": "none",
-    "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorWidth": 3,
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.tabs.location": "left",
@@ -23,7 +24,6 @@
     // [VISUAL SETTINGS]
     "editor.smoothScrolling": true,
     "editor.minimap.enabled": false,
-    // "editor.scrollbar.vertical": "hidden",
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "hidden",
     "window.commandCenter": false,
@@ -31,7 +31,7 @@
     "workbench.sideBar.location": "right",
     "workbench.list.smoothScrolling": true,
     "workbench.activityBar.location": "hidden",
-    
+    "editor.bracketPairColorization.enabled": false, 
     
     // [MISC SETTINGS]
     "window.openFilesInNewWindow": "on",
@@ -44,9 +44,6 @@
    
     
     "explorer.autoReveal": false,
-
-    // [THEME SETTINGS]    
-    "workbench.colorTheme": "Tsoding Emacs Gruber Minimal",
     "workbench.iconTheme": "catppuccin noctis icons",
     "cmake.showOptionsMovedNotification": false,
     "cmake.pinnedCommands": [
@@ -56,16 +53,11 @@
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
 
-    //todo create my own theme starting from this colors
-    "editor.tokenColorCustomizations": {
-        "comments": "#393A3F",
-        "keywords": "#F8E472",
-        "strings": "#7D9B5D",
-        //"variables": "#FF0000"
-    },
-    // [CLANGD SETTINGS]    
     "clangd.path": "/home/ldcrainic/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/18.1.3/clangd_18.1.3/bin/clangd",
     "clangd.inactiveRegions.opacity": 0.55,
     "clangd.inactiveRegions.useBackgroundHighlight": true,
+    "clangd.arguments": [ "--header-insertion=never" ], 
+    "workbench.colorTheme": "Noir Minimal",
     "catppuccin-noctis-icons.hidesExplorerArrows": false,
+    "workbench.startupEditor": "none",
 }
