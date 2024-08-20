@@ -1,0 +1,80 @@
+# Config created by Lucian D. Crainic https://github.com/LucianCrainic/dotfiles
+# Copyright (c) 2024 LucianCrainic. All Rights Reserved.
+# ==============================================================
+[username]
+style_user = "yellow bold"
+style_root = "red bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+[character]                            
+success_symbol = "[➜ ](bold grey)"     
+error_symbol = "[✗ ](bold red)"
+[directory]
+read_only = " "
+truncation_length = 10
+truncate_to_repo = true
+style = "bold green"
+[aws]
+symbol = "  "
+[conda]
+symbol = " "
+[dart]
+symbol = " "
+[docker_context]
+symbol = " "
+format = "via [$symbol$context]($style) "
+style = "blue bold"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_folders = []
+disabled = false
+[elixir]
+symbol = " "
+[elm]
+symbol = " "
+[git_branch]
+symbol = " "
+[golang]
+symbol = " "
+[hg_branch]
+symbol = " "
+[java]
+symbol = " "
+[julia]
+symbol = " "
+[memory_usage]
+symbol = "󰍛 "
+[nim]
+symbol = " "
+[nix_shell]
+symbol = " "
+[package]
+symbol = "󰏗 "
+[perl]
+symbol = " "
+[php]
+symbol = " "
+[python]
+symbol = " "
+format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
+style = "bold yellow"
+pyenv_prefix = "venv "
+python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+detect_extensions = ["py"]
+version_format = "v${raw}"
+[ruby]
+symbol = " "
+[rust]
+symbol = " "
+[scala]
+symbol = " "
+[shlvl]
+symbol = " "
+[swift]
+symbol = "ﯣ "
+[nodejs]
+format = "via [ Node.js $version](bold green) "
+detect_files = ["package.json", ".node-version"]
+detect_folders = ["node_modules"]
+# ==============================================================
