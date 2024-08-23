@@ -1,0 +1,120 @@
+# Config created by Lucian D. Crainic https://github.com/LucianCrainic/dotfiles
+# copyright (c) 2020 luciancrainic. all rights reserved.
+# ==============================================================
+# Mod Windows Key
+set $mod Mod4
+# ==============================================================
+
+# ==============================================================
+# Font
+font pango:ZedMono Nerd Font 11
+# ==============================================================
+
+# ==============================================================
+# Running Apps in Background 
+exec ~/.config/i3/scripts/startup.sh
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+exec --no-startup-id xset s off -dpms
+#NOTE 5s sleep is needed before starting picom due to a weird bug.
+exec --no-startup-id sleep 5 && picom -b
+exec_always ~/.config/polybar/launch.sh
+# ==============================================================
+
+# ==============================================================
+# Shortcuts 
+floating_modifier $mod
+
+# Kill a window 
+bindsym $mod+q kill
+
+# All the movements are based on the VIM movements style.
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+k focus down
+bindsym $mod+j focus up
+bindsym $mod+l focus right
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+j move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal and vertical orientation
+bindsym $mod+y split h
+bindsym $mod+u split v
+
+# Run specific applications
+bindsym $mod+n exec alacritty
+bindsym $mod+m exec google-chrome-stable
+#bindsym $mod+f exec --no-startup-id rofi -show drun
+bindsym $mod+f exec --no-startup-id ~/.config/rofi/launcher/launcher.sh
+bindsym $mod+g exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/volume/volume.sh
+
+
+# audio control
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ && volume &
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- && volume &
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && mute &
+
+# I3 Reload / Restart and Exit
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+
+# ==============================================================
+
+
+bindsym $mod+b floating enable, resize set 2100 1300, move position center
+bindsym $mod+Shift+b floating disable
+
+# ==============================================================
+# Colors and Window Borders 
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+# ==============================================================
+
+# ==============================================================
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+# ==============================================================
+
+# ==============================================================
+# Colors and Windows Border 
+gaps inner 18
+gaps outer 4
+for_window [class="^.*"] border pixel 4
+
+client.focused          #b8bb26 #b8bb26 #ebdbb2 #b8bb26 #b8bb26
+client.focused_inactive #282828 #282828 #ebdbb2 #282828 #282828
+client.unfocused        #282828 #282828 #ebdbb2 #282828 #282828
+client.urgent           #282828 #282828 #fb4934 #282828 #282828
+client.placeholder      #282828 #282828 #ebdbb2 #282828 #282828
+# ==============================================================

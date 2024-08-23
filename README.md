@@ -8,12 +8,18 @@ TODO per Config Lavoro
 - [ ] Ranger  
 - [ ] LightDM  
 - [ ] Vscode
-- [ ] Starship 
+- [x] Starship 
 - [ ] Rofi  
+  - [ ] Screenshot
+  - [ ] Volume
+  - [ ] Quicklinks
+  - [ ] MPD
+
 - [ ] Dunst 
+- [x] Zathura Aggiungere tmux shortcut per aprire  
 - [ ] Polybar 
 - [ ] Zshrc  
 - [ ] Tmux
-- [ ] Alacritty  
-- [ ] Picom
+- [x] Alacritty  
+- [x] Picom
 - [x] Neofetch

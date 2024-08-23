@@ -1,0 +1,1 @@
+xrandr --output DP-4 --primary --mode 5120x1440 -r 119.97 && xrandr --output HDMI-0 --rotate left --left-of DP-4 -r 75.00 && feh --bg-fill /home/lucian/.config/wallpapers/sleepy32/sleepy_mountains_v06_5120x1440.png --bg-fill /home/lucian/.config/wallpapers/sleepy32/sleepy_mountains_v06_5120x1440.png
