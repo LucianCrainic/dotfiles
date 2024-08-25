@@ -1,3 +1,5 @@
+exec xrandr --setprovideroutputsource modesetting NVIDIA-0
+exec xrandr --auto 
 # Config created by Lucian D. Crainic https://github.com/LucianCrainic/dotfiles
 # copyright (c) 2020 luciancrainic. all rights reserved.
 # ==============================================================
