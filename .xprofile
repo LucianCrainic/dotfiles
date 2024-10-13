@@ -1,9 +1,0 @@
-# Output
-xrandr --output HDMI-0 --primary --mode 1920x1080 -r 100.000
-xrandr --output DP-0 --rotate left --mode 1920x1080 --left-of HDMI-0 -r 75.00
-# Background
-feh --bg-fill /home/lucian/.config/wallpapers/background.png --bg-fill /home/lucian/.config/wallpapers/background.png
-# Turn Off Screen going to sleep
-xset s off
-xset -dpms
-xset s noblank
