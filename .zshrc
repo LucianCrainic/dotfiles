@@ -6,7 +6,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-# https://askubuntu.com/questions/1515760/unknown-option-bash-when-opening-the-terminal
+# https://askubuntu.com/questions/1515760/unknown-option-bash-when-opening-the-terminal#
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # [PLUGINS]
@@ -21,8 +21,6 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
-
-
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
@@ -35,18 +33,42 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+export EDITOR=nvim
+
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi \
+--layout=reverse \
+--border=rounded \
+--no-scrollbar \
+--pointer='>' \
+--marker='*' \
+--bold"
+
+
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+#zstyle ':completion:*' menu no
+#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+#zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-alias l='ls --color'
+alias ls='ls --color'
 
 # [SHELL INTEGRATIONS]
 eval "$(starship init zsh)"
 # https://askubuntu.com/questions/1515760/unknown-option-bash-when-opening-the-terminal
-#eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
 
 # [CONAN]
 export GITLAB_CONAN_PASSWORD="3vmZpg92QMSUJ913cXms"
