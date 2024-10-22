@@ -9,12 +9,10 @@ return {
       keywordStyle = { italic = true },
       statementStyle = { bold = true },
       typeStyle = { bold = true },
-      dim_inactive = true,
       transparent = true,
     },
   },
 
-  -- Configure LazyVim to use the kanagawa colorscheme
   {
     "LazyVim/LazyVim",
     opts = {
