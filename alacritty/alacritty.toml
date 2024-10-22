@@ -1,18 +1,15 @@
 # Config created by Lucian D. Crainic https://github.com/LucianCrainic/dotfiles
 # Copyright (c) 2024 LucianCrainic. All Rights Reserved.
 # ==============================================================
-import = [
-  "~/.config/alacritty/theme.toml",
-  "~/.config/alacritty/keybinds.toml"
-]
+import = ["~/.config/alacritty/theme.toml", "~/.config/alacritty/keybinds.toml"]
 live_config_reload = true
 [window]
 dimensions = { columns = 120, lines = 120 }
-padding = { x = 30, y = 30 }  
-decorations = "None"  
-startup_mode = "Windowed"  
+padding = { x = 30, y = 30 }
+decorations = "None"
+startup_mode = "Windowed"
 [font]
-normal = { family = "ZedMono Nerd Font", style = "Bold" }  
+normal = { family = "Iosevka Nerd Font", style = "Bold" }
 size = 13
 [cursor]
 style = "Underline"

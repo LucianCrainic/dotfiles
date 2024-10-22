@@ -2,18 +2,16 @@
 [[mouse.bindings]]
 mouse = "Middle"
 action = "PasteSelection"
-
 # Font Size 
 [[keyboard.bindings]]
-key = "J"
+key = "H"
 mods = "Control|Shift"
 action = "IncreaseFontSize"
 [[keyboard.bindings]]
-key = "F"
-mods = "Control|Shift"
+key = "G" 
+mods = "Control|Shift" 
 action = "DecreaseFontSize"
 [[keyboard.bindings]]
 key = "R"
 mods = "Control|Shift"
 action = "ResetFontSize"
-
