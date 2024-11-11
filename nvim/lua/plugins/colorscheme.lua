@@ -1,22 +1,11 @@
 return {
-  {
-    "catppuccin/nvim",
-    priority = 1000,
-    opts = {
-      undercurl = true, -- enable undercurls
-      commentStyle = { italic = true },
-      functionStyle = { italic = true },
-      keywordStyle = { italic = true },
-      statementStyle = { bold = true },
-      typeStyle = { bold = true },
+  "rebelot/kanagawa.nvim",
+  priority = 1000,
+  config = function()
+    require("kanagawa").setup({
       transparent = true,
-    },
-  },
-
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin",
-    },
-  },
+    })
+    vim.cmd.colorscheme "kanagawa-wave"
+    -- vim.cmd.colorscheme "kanagawa-dragon"
+  end,
 }
