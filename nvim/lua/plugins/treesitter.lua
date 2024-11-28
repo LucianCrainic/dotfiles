@@ -6,6 +6,7 @@ return {
       "lua",
       "vim",
       "cpp",
+      "robot",
     },
   },
 }
