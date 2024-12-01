@@ -1,8 +1,8 @@
 # Config created by Lucian D. Crainic https://github.com/LucianCrainic/dotfiles
 # Copyright (c) 2024 LucianCrainic. All Rights Reserved.
 # ==============================================================
-general.import = ["~/.config/alacritty/theme.toml", "~/.config/alacritty/keybinds.toml"]
-general.live_config_reload = true
+import = ["~/.config/alacritty/theme.toml", "~/.config/alacritty/keybinds.toml"]
+live_config_reload = true
 [window]
 dimensions = { columns = 120, lines = 120 }
 padding = { x = 30, y = 30 }
