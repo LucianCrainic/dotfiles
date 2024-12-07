@@ -1,22 +1,38 @@
-# Config created by Lucian D. Crainic https://github.com/LucianCrainic/dotfiles
-# Copyright (c) 2024 LucianCrainic. All Rights Reserved.
-# ==============================================================
 import = ["~/.config/alacritty/theme.toml", "~/.config/alacritty/keybinds.toml"]
 live_config_reload = true
+
 [window]
 dimensions = { columns = 120, lines = 120 }
 padding = { x = 30, y = 30 }
 decorations = "None"
 startup_mode = "Windowed"
+
 [font]
-normal = { family = "Iosevka Nerd Font"}
-size = 13
+size = 11
+offset.x=0
+offset.y=0
+glyph_offset.x=0
+glyph_offset.y=0
+[font.normal]
+family = "Iosevka Nerd Font"
+style = "SemiBold"
+[font.bold]
+family = "Iosevka Nerd Font"
+style = "ExtraBold"
+[font.italic]
+family = "Iosevka Nerd Font"
+style = "SemiBold Italic"
+[font.bold_italic]
+family = "Iosevka Nerd Font"
+style = "ExtraBold Italic"
+
 [cursor]
 style = "Underline"
 unfocused_hollow = false
 thickness = 0.30
+
 [mouse]
 hide_when_typing = true
+
 [selection]
 save_to_clipboard = true
-# ==============================================================
