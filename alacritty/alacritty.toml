@@ -9,7 +9,7 @@ decorations = "None"
 startup_mode = "Windowed"
 
 [font]
-size = 11
+size = 15
 offset.x=0
 offset.y=0
 glyph_offset.x=0
