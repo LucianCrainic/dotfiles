@@ -6,13 +6,12 @@ exec xrandr --auto
 ####################################
 focus_follows_mouse no
 focus_wrapping no
-for_window [class="^.*"] border pixel 1
 title_align center
 
 ####################################
 #     Fonts 
 ####################################
-font pango: Iosevka Nerd Font Bold 14
+font pango: Iosevka Nerd Font Bold 12
 
 ################################
 #         Mod Key
@@ -26,20 +25,13 @@ set $mod Mod4
 # default i3 tiling mode:
 workspace_layout default
 
-##############################
-#border indicator on windows:
-##############################
-default_border pixel 1
-
-# thin borders
-hide_edge_borders both
-
 ###############################
 #         Gaps
 ###############################
 # Set inner/outer gaps
 gaps inner 10
-gaps outer 0
+gaps outer 3
+for_window [class="^.*"] border pixel 3
 
 ##############################
 #     Floating Modifier      # 
@@ -182,11 +174,11 @@ bindsym $mod+i exec rofi -modi emoji -show emoji
 bindsym $mod+Shift+q kill
 
 # exit-menu
-bindsym $mod+Shift+e exec ~/.config/custom_scripts/power.sh
-
+# bindsym $mod+Shift+e exec ~/.config/custom_scripts/power.sh
+#
 # Lock the system
-bindsym $mod+Shift+x exec i3lock -i ~/Pictures/backgrounds/VIM.png
-
+# bindsym $mod+Shift+x exec i3lock -i ~/Pictures/backgrounds/VIM.png
+#
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -223,6 +215,9 @@ exec xset s -dpms
 exec xset s off
 exec xset s noblank
 
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 # feh 
 exec feh --bg-fill ~/.config/wallpapers/background.png --bg-fill ~/.config/wallpapers/background.png
 
@@ -247,3 +242,4 @@ client.focused               $color2           $color1         $color3          
 client.unfocused             $color4           $color1         $color4           $color4         $color4
 client.focused_inactive      $color4           $color1         $color4           $color4         $color4
 client.urgent                $color3           $color3         $color2           $color2         $color4
+
