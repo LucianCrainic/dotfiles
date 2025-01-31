@@ -43,15 +43,20 @@ function y() {
 }
 export EDITOR=nvim
 
-export FZF_DEFAULT_OPTS=" \
---multi \
---layout=reverse \
---border=rounded \
---no-scrollbar \
---pointer='>' \
---marker='*' \
---bold"
 
+# pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# Initialize pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+
+# Initialize pyenv-virtualenv (only if you installed pyenv-virtualenv)
+if command -v pyenv virtualenv-init 1>/dev/null 2>&1; then
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
