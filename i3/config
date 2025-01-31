@@ -1,150 +1,245 @@
 exec xrandr --setprovideroutputsource modesetting NVIDIA-0
-exec xrandr --auto 
-# Config created by Lucian D. Crainic https://github.com/LucianCrainic/dotfiles
-# copyright (c) 2020 luciancrainic. all rights reserved.
-# ==============================================================
-# Mod Windows Key
+exec xrandr --auto
+
+####################################
+#     MY MODS
+####################################
+focus_follows_mouse no
+focus_wrapping no
+title_align center
+
+####################################
+#     Fonts 
+####################################
+font pango: ZedMono Nerd Font Bold 12
+
+################################
+#         Mod Key
+################################
+# set the mod key to the winkey:
 set $mod Mod4
-# ==============================================================
 
-# ==============================================================
-# Font
-font pango:Iosevka Nerd Font Bold 14
-# ==============================================================
+#####################
+# workspace layout: #
+#####################
+# default i3 tiling mode:
+workspace_layout default
 
-# ==============================================================
-# Running Apps in Background 
-exec --no-startup-id nm-applet
-#exec ~/.config/i3/start.sh
-exec /home/ldcrainic/.config/i3/start.sh
-#NOTE 5s sleep is needed before starting picom due to a weird bug.
-exec --no-startup-id sleep 5 && picom -b
-exec_always ~/.config/polybar/launch.sh
-# ==============================================================
+###############################
+#         Gaps
+###############################
+# Set inner/outer gaps
+gaps inner 10
+gaps outer 3
+for_window [class="^.*"] border pixel 3
 
-# ==============================================================
-# Shortcuts 
+##############################
+#     Floating Modifier      # 
+##############################
 floating_modifier $mod
 
-# Kill a window 
-bindsym $mod+q kill
+##############################
+#  Switch Active Workspaces  #
+##############################
+bindsym $mod+Tab workspace next
+bindsym Mod1+Tab workspace prev
 
-# All the movements are based on the VIM movements style.
-# Change focus
-bindsym $mod+h focus left
-bindsym $mod+k focus down
-bindsym $mod+j focus up
-bindsym $mod+l focus right
-# Move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+j move up
-bindsym $mod+Shift+l move right
-
-# split in horizontal and vertical orientation
-bindsym $mod+y split h
-bindsym $mod+u split v
-
-# Run specific applications
-bindsym $mod+n exec alacritty
-bindsym $mod+m exec firefox
-bindsym $mod+f exec --no-startup-id ~/.config/rofi/launcher/launcher.sh
-bindsym $mod+g exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
-bindsym $mod+d exec --no-startup-id ~/.config/rofi/volume/volume.sh
-
-
-# enter fullscreen mode for the focused container
-bindsym $mod+a fullscreen
-
-# change container layout (stacked, tabbed, default)
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout default
-
-# audio control
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ && volume &
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- && volume &
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && mute &
-
-# I3 Reload / Restart and Exit
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-# ==============================================================
-# Colors and Window Borders 
-bindsym $mod+r mode "resize"
-mode "resize" {
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-# ==============================================================
-
-# ==============================================================
-# Workspaces
+##########################################
+# configuration for workspace behaviour: #
+##########################################
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
 
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
+##############################
+# switch to workspace        #
+##############################
+bindsym $mod+1    workspace  $ws1
+bindsym $mod+2    workspace  $ws2
+bindsym $mod+3    workspace  $ws3
+bindsym $mod+4    workspace  $ws4
+bindsym $mod+5    workspace  $ws5
+bindsym $mod+6    workspace  $ws6
+bindsym $mod+7    workspace  $ws7
+bindsym $mod+8    workspace  $ws8
 
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-# ==============================================================
+# move focused container to workspace
+bindsym $mod+Shift+1    move container to workspace  $ws1
+bindsym $mod+Shift+2    move container to workspace  $ws2
+bindsym $mod+Shift+3    move container to workspace  $ws3
+bindsym $mod+Shift+4    move container to workspace  $ws4
+bindsym $mod+Shift+5    move container to workspace  $ws5
+bindsym $mod+Shift+6    move container to workspace  $ws6
+bindsym $mod+Shift+7    move container to workspace  $ws7
+bindsym $mod+Shift+8    move container to workspace  $ws8
 
-# ==============================================================
-# Colors and Windows Border 
-gaps inner 18
-gaps outer 4
-for_window [class="^.*"] border pixel 4
+##############################
+# Focus Changing
+##############################
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
-# Colors
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0c
-set $peach     #fab387
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
-# target                 title     bg    text   indicator  border
-client.focused           $lavender $base $text  $lavender $lavender
-client.focused_inactive  $overlay0 $base $text  $lavender $overlay0
-client.unfocused         $overlay0 $base $text  $rosewater $overlay0
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
+##############################
+# Window Modifying Rules
+##############################
+# split in horizontal orientation
+bindsym $mod+z split h
 
-# ==============================================================
+# split in vertical orientation
+bindsym $mod+a split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+m fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+bindsym $mod+e layout tabbed
+bindsym $mod+t layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+q focus mode_toggle
+
+# focus the parent container
+bindsym $mod+p focus parent
+
+##############################
+#  Window Resizing           #
+##############################
+# resize window (you can also use the mouse for that):
+bindsym $mod+Ctrl+h resize grow width 5 px or 5 ppt
+bindsym $mod+Ctrl+j resize shrink height 5 px or 5 ppt
+bindsym $mod+Ctrl+k resize grow height 5 px or 5 ppt
+bindsym $mod+Ctrl+l resize shrink width 5 px or 5 ppt
+
+##################
+# floating rules #
+##################
+# Default floting window size
+for_window [floating] resize set 800 500, move position center
+
+# set floating (nontiling) for apps needing it
+# for_window [class="Yad" instance="yad"] floating disable
+# for_window [class="Nitrogen"] floating enable
+
+####################################################
+# keybindings for different shortcuts and actions: #
+###################################################
+## App shortcuts
+# Browser
+bindsym $mod+w exec firefox
+
+# File Manager
+bindsym $mod+n exec nemo
+
+# PDF Reader Zathura 
+bindsym $mod+Shift+o exec zathura
+
+# Screenshot : FlameShot
+bindsym Print exec flameshot full --path ~/Pictures/screenshots
+bindsym $mod+Print exec flameshot gui
+
+# start a terminal
+bindsym $mod+Return exec alacritty
+
+# ibus
+bindsym $mod+Shift+b exec blueman-manager
+
+# Network Manager Applet
+bindsym Mod1+Shift+n exec --no-startup-id nm-applet
+
+# Rofi
+bindsym $mod+d exec --no-startup-id rofi -show drun -disable-history -show-icons
+bindsym Mod1+d exec --no-startup-id rofi -show run -disable-history
+bindsym Mod1+w exec rofi -show window -show-icons
+bindsym $mod+i exec rofi -modi emoji -show emoji
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# exit-menu
+# bindsym $mod+Shift+e exec ~/.config/custom_scripts/power.sh
+#
+# Lock the system
+# bindsym $mod+Shift+x exec i3lock -i ~/Pictures/backgrounds/VIM.png
+#
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to update i3)
+bindsym $mod+Shift+r restart
+
+# Funtions Keys
+# Brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% 
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% 
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+#############################################
+# autostart applications/services on login: #
+#############################################
+# xorg commands
+exec xrandr --output HDMI-0 --primary --mode 1920x1080 -r 100.000
+exec xrandr --output DP-4 --mode 1920x1080 --left-of HDMI-0 -r 75.00
+#exec xrandr --output DP-1-4-2 --primary --mode 1920x1080
+#exec xrandr --output DP-1-4-1 --mode 1920x1080 --right-of DP-1-4-2
+#exec xrandr --output DP-1-4-3 --mode 1920x1080 --left-of DP-1-4-2
+
+exec xset s -dpms
+exec xset s off
+exec xset s noblank
+
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# feh 
+exec feh --bg-fill ~/.config/wallpapers/background-2.jpg --bg-fill ~/.config/wallpapers/background-2.jpg
+
+# compositor
+exec --no-startup-id sleep 5 && picom -b
+
+# Notification Daemon
+exec dunst
+
+######################################
+# color settings for windows         #
+######################################
+# Define colors variables:
+set $color1     #1d2021
+set $color2     #d8a657
+set $color3     #fabd3f
+set $color4     #928374
+
+# define colors for windows:
+#class                          border          bground         text            indicator       child_border
+client.focused               $color2           $color1         $color3           $color2         $color2
+client.unfocused             $color4           $color1         $color4           $color4         $color4
+client.focused_inactive      $color4           $color1         $color4           $color4         $color4
+client.urgent                $color3           $color3         $color2           $color2         $color4
+
