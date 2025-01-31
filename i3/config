@@ -11,7 +11,7 @@ title_align center
 ####################################
 #     Fonts 
 ####################################
-font pango: Iosevka Nerd Font Bold 12
+font pango: ZedMono Nerd Font Bold 12
 
 ################################
 #         Mod Key
@@ -219,7 +219,7 @@ exec xset s noblank
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # feh 
-exec feh --bg-fill ~/.config/wallpapers/background.png --bg-fill ~/.config/wallpapers/background.png
+exec feh --bg-fill ~/.config/wallpapers/background-2.jpg --bg-fill ~/.config/wallpapers/background-2.jpg
 
 # compositor
 exec --no-startup-id sleep 5 && picom -b
