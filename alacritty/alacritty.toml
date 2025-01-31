@@ -9,23 +9,14 @@ decorations = "None"
 startup_mode = "Windowed"
 
 [font]
-size = 15
+size = 12
 offset.x=0
 offset.y=0
 glyph_offset.x=0
 glyph_offset.y=0
+
 [font.normal]
-family = "Iosevka Nerd Font"
-style = "SemiBold"
-[font.bold]
-family = "Iosevka Nerd Font"
-style = "ExtraBold"
-[font.italic]
-family = "Iosevka Nerd Font"
-style = "SemiBold Italic"
-[font.bold_italic]
-family = "Iosevka Nerd Font"
-style = "ExtraBold Italic"
+family = "ZedMono Nerd Font"
 
 [cursor]
 style = "Underline"
