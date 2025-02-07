@@ -5,8 +5,11 @@ return {
     opts = {
       ensure_installed = {
         "lua_ls",
+        "ruff",
         "clangd",
         "robotframework_ls",
+        "dockerls",
+        "docker_compose_language_service"
       },
     },
   },
@@ -16,6 +19,7 @@ return {
     opts = {
       ensure_installed = {
         "stylua",
+        "yamlfmt"
       },
     },
   },
