@@ -12,7 +12,7 @@ glyph_offset.x=0
 glyph_offset.y=0
 
 [font.normal]
-family = "ZedMono Nerd Font"
+family = "Iosevka Nerd Font"
 
 [cursor]
 style = "Underline"
