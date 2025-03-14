@@ -1,48 +1,76 @@
-setopt AUTO_CD
-setopt INTERACTIVE_COMMENTS
-setopt HIST_FCNTL_LOCK
-setopt HIST_IGNORE_ALL_DUPS
-setopt SHARE_HISTORY
-unsetopt AUTO_REMOVE_SLASH
-unsetopt HIST_EXPIRE_DUPS_FIRST
-unsetopt EXTENDED_HISTORY
+# [ZINIT]
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME" ]; then
+	   mkdir -p "$(dirname $ZINIT_HOME)"
+	      git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "${ZINIT_HOME}/zinit.zsh"
 
-# PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.composer/vendor/bin:$PATH
-export PATH=$PNPM_HOME:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/go/bin:$PATH
-if [[ "$(uname -sm)" = "Darwin arm64" ]] then export PATH=/opt/homebrew/bin:$PATH; fi
-export PATH=$HOME/Desktop/yazi/target/release:$PATH
+# https://askubuntu.com/questions/1515760/unknown-option-bash-when-opening-the-terminal#
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Autoload
-autoload -U compinit; compinit
-zmodload zsh/complist
-autoload -Uz edit-command-line; zle -N edit-command-line
+# [PLUGINS]
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
-# Plugins
-source $ZSHAREDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSHAREDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZSHAREDIR/zsh-history-substring-search/zsh-history-substring-search.zsh
-fpath=($ZSHAREDIR/zsh-completions/src $fpath)
+autoload -Uz compinit && compinit
 
-[[ $- == *i* ]] && source $ZSHAREDIR/fzf/completion.zsh 2> /dev/null
-source $ZSHAREDIR/fzf/key-bindings.zsh
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
-# Auto completion
-zstyle ":completion:*:*:*:*:*" menu select
-zstyle ":completion:*" use-cache yes
-zstyle ":completion:*" special-dirs true
-zstyle ":completion:*" squeeze-slashes true
-zstyle ":completion:*" file-sort change
-zstyle ":completion:*" matcher-list "m:{[:lower:][:upper:]}={[:upper:][:lower:]}" "r:|=*" "l:|=* r:|=*"
-source $ZDOTDIR/keymap.zsh
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
-# Tabtab for node cli programs, e.g. `pnpm`
-source $ZDOTDIR/tabtab/pnpm.zsh
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+export EDITOR=nvim
 
-# Initialize tools
-source $ZDOTDIR/function.zsh
+
+# pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# Initialize pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+
+# Initialize pyenv-virtualenv (only if you installed pyenv-virtualenv)
+if command -v pyenv virtualenv-init 1>/dev/null 2>&1; then
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+#zstyle ':completion:*' menu no
+#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+#zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+alias ls='ls --color'
+alias lg='lazygit'
+# [SHELL INTEGRATIONS]
 eval "$(starship init zsh)"
+# https://askubuntu.com/questions/1515760/unknown-option-bash-when-opening-the-terminal
 eval "$(zoxide init zsh)"
+
+# [CONAN]
+export GITLAB_CONAN_PASSWORD="3vmZpg92QMSUJ913cXms"
+alias CONAN_START='conan user ldcrainic -r gitlab -p $GITLAB_CONAN_PASSWORD'

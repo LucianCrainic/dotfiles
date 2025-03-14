@@ -1,16 +1,17 @@
-# Paste with middle click
 [[mouse.bindings]]
 mouse = "Middle"
 action = "PasteSelection"
-# Font Size 
+
 [[keyboard.bindings]]
-key = "H"
+key = "Y"
 mods = "Control|Shift"
 action = "IncreaseFontSize"
+
 [[keyboard.bindings]]
-key = "G" 
-mods = "Control|Shift" 
+key = "T"
+mods = "Control|Shift"
 action = "DecreaseFontSize"
+
 [[keyboard.bindings]]
 key = "R"
 mods = "Control|Shift"
