@@ -1,3 +1,31 @@
+-- Function to detect Python executable
+local function get_python_executable()
+  -- Check for virtual environment
+  local venv = os.getenv("VIRTUAL_ENV")
+  if venv then
+    return venv .. "/bin/python"
+  end
+  
+  -- Check for conda environment
+  local conda_env = os.getenv("CONDA_DEFAULT_ENV")
+  if conda_env then
+    local conda_prefix = os.getenv("CONDA_PREFIX")
+    if conda_prefix then
+      return conda_prefix .. "/bin/python"
+    end
+  end
+  
+  -- Check for pyenv
+  local pyenv_version = vim.fn.system("pyenv version-name 2>/dev/null"):gsub("\n", "")
+  if pyenv_version and pyenv_version ~= "" then
+    local pyenv_root = os.getenv("PYENV_ROOT") or (os.getenv("HOME") .. "/.pyenv")
+    return pyenv_root .. "/versions/" .. pyenv_version .. "/bin/python"
+  end
+  
+  -- Default to system python
+  return "python3"
+end
+
 -- Robot Framework support plugin
 return {
   {
@@ -192,5 +220,21 @@ return {
       opts.mappings = maps
       return opts
     end,
+  },
+  {
+    "AstroNvim/astrolsp",
+    opts = {
+      config = {
+        robotframework_ls = {
+          settings = {
+            robot = {
+              python = {
+                executable = get_python_executable(),
+              },
+            },
+          },
+        },
+      },
+    },
   },
 }
