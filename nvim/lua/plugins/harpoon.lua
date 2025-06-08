@@ -15,13 +15,13 @@ return {
       maps.n = maps.n or {}
       
       -- Harpoon specific mappings with which-key group
-      maps.n["<Leader>h"] = { desc = "🎯 Harpoon" }
+      maps.n["<Leader>h"] = { desc = "Harpoon" }
       
       maps.n["<Leader>ha"] = {
         function() 
           require("harpoon"):list():append() 
         end,
-        desc = "➕ Add file to harpoon",
+        desc = "Add file to harpoon",
       }
       
       maps.n["<Leader>hm"] = {
@@ -29,56 +29,56 @@ return {
           local harpoon = require("harpoon") 
           harpoon.ui:toggle_quick_menu(harpoon:list()) 
         end,
-        desc = "📋 Toggle harpoon menu",
+        desc = "Toggle harpoon menu",
       }
       
       maps.n["<Leader>h1"] = {
         function() 
           require("harpoon"):list():select(1) 
         end,
-        desc = "1️⃣ Go to harpoon file 1",
+        desc = "Go to harpoon file 1",
       }
       
       maps.n["<Leader>h2"] = {
         function() 
           require("harpoon"):list():select(2) 
         end,
-        desc = "2️⃣ Go to harpoon file 2",
+        desc = "Go to harpoon file 2",
       }
       
       maps.n["<Leader>h3"] = {
         function() 
           require("harpoon"):list():select(3) 
         end,
-        desc = "3️⃣ Go to harpoon file 3",
+        desc = "Go to harpoon file 3",
       }
       
       maps.n["<Leader>h4"] = {
         function() 
           require("harpoon"):list():select(4) 
         end,
-        desc = "4️⃣ Go to harpoon file 4",
+        desc = "Go to harpoon file 4",
       }
       
       maps.n["<Leader>h5"] = {
         function() 
           require("harpoon"):list():select(5) 
         end,
-        desc = "5️⃣ Go to harpoon file 5",
+        desc = "Go to harpoon file 5",
       }
       
       maps.n["<Leader>hn"] = {
         function() 
           require("harpoon"):list():next() 
         end,
-        desc = "⏭️ Next harpoon file",
+        desc = "Next harpoon file",
       }
       
       maps.n["<Leader>hp"] = {
         function() 
           require("harpoon"):list():prev() 
         end,
-        desc = "⏮️ Previous harpoon file",
+        desc = "Previous harpoon file",
       }
       
       opts.mappings = maps
