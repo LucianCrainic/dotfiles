@@ -14,5 +14,27 @@ max_height = 1000
 edit = [
 	{ run = '${EDITOR:=nvim} "$@"', desc = "$EDITOR", block = true },
 	{ run = 'code "$@"', orphan = true },
+]
 
+browser = [
+	{ run = 'open "$@"', orphan = true, desc = "Open in browser" },
+]
+
+log_html = [
+	{ run = '''
+		for file in "$@"; do
+			if [[ "$file" == *.html ]] && [[ "$file" == *log* ]]; then
+				open "$file"
+			else
+				${EDITOR:=nvim} "$file"
+			fi
+		done
+	''', desc = "Smart HTML opener", block = true },
+]
+
+[open]
+rules = [
+	{ name = "*log*.html", use = "browser" },
+	{ name = "*.html", use = [ "browser", "edit" ] },
+	{ mime = "text/html", use = "browser" },
 ]
