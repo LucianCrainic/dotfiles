@@ -5,14 +5,23 @@ return {
       large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
       autopairs = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
-      diagnostics_mode = 1, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
       highlighturl = false, -- highlight URLs at start
       notifications = false,
     },
   
     diagnostics = {
-      virtual_text = true,
+      virtual_text = {
+        enabled = true, -- enable virtual text
+        source = "if_many", -- show source when there are multiple diagnostics
+        spacing = 4, -- number of spaces after diagnostics text and before virtual text
+        prefix = "●", -- prefix for virtual text
+        severity = { min = vim.diagnostic.severity.HINT }, -- show all severities including hints
+      },
       underline = true,
+      signs = true, -- enable signs in the sign column
+      update_in_insert = false, -- don't update diagnostics while in insert mode
+      severity_sort = true, -- sort diagnostics by severity
     },
    
     options = {

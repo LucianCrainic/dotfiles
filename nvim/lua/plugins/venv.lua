@@ -2,15 +2,27 @@ return {
   'linux-cultist/venv-selector.nvim',
   dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
   opts = {
-    -- Your options go here
-    -- name = "venv",
-    -- auto_refresh = false
+    name = "venv",
+    auto_refresh = true,
+    search_venv_managers = true,
+    search_workspace = true,
+    -- Set default paths where venv-selector should look for virtual environments
+    path = {
+      "~/miniconda3/envs",
+      "~/.pyenv/versions",
+      "~/.virtualenvs",
+      "./venv",
+      "./.venv",
+      "~/venv",
+      "~/.venv",
+    },
+    -- Automatically activate the detected virtual environment
+    activate_venv_in_terminal = true,
+    -- Set Python path automatically when switching venvs
+    set_environment_variables = true,
   },
-  event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+  event = 'VeryLazy',
+  --branch = "regexp"
   keys = {
-    -- Keymap to open VenvSelector to pick a venv.
-    { '<leader>vs', '<cmd>VenvSelect<cr>' },
-    -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-    { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
   },
 }

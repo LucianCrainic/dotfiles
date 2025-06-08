@@ -13,8 +13,8 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = false, -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
+        enabled = false, -- disable format on save globally for all languages
+        allow_filetypes = { -- enable format on save for specified filetypes only (when enabled = true)
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
@@ -26,9 +26,12 @@ return {
         -- "lua_ls",
       },
       timeout_ms = 1000, -- default format timeout
-      -- filter = function(client) -- fully override the default formatting function
-      --   return true
-      -- end
+      -- Completely disable automatic formatting for all clients by default
+      filter = function(client)
+        -- Return false to disable formatting for all language servers
+        -- You can customize this function to enable formatting for specific servers if needed
+        return false
+      end
     },
     -- enable servers that you already have installed without mason
     servers = {

@@ -9,7 +9,10 @@ return {
         "clangd",
         "robotframework_ls",
         "dockerls",
-        "docker_compose_language_service"
+        "docker_compose_language_service",
+        "bash-language-server",
+        "yaml-language-server",
+        "cmake-language-server"
       },
     },
   },
