@@ -8,7 +8,7 @@ return {
       maps.n = maps.n or {}
       
       -- Python specific mappings with which-key group
-      maps.n["<Leader>p"] = { desc = "🐍 Python" }
+      maps.n["<Leader>p"] = { desc = "Python" }
       
       maps.n["<Leader>pr"] = {
         function()
@@ -31,7 +31,7 @@ return {
           
           vim.notify(string.format("Running Python file: %s", vim.fn.expand("%:t")), vim.log.levels.INFO)
         end,
-        desc = "🚀 Run current Python file",
+        desc = "Run current Python file",
       }
       
       maps.n["<Leader>pi"] = {
@@ -53,7 +53,7 @@ return {
           
           vim.notify("Running Python file in interactive mode", vim.log.levels.INFO)
         end,
-        desc = "💬 Run Python file in interactive mode",
+        desc = "Run Python file in interactive mode",
       }
       
       maps.n["<Leader>pt"] = {
@@ -75,7 +75,7 @@ return {
           
           vim.notify("Running pytest on current file", vim.log.levels.INFO)
         end,
-        desc = "🧪 Run pytest on current file",
+        desc = "Run pytest on current file",
       }
       
       maps.n["<Leader>pd"] = {
@@ -91,7 +91,7 @@ return {
           
           vim.notify("Running all tests in current directory", vim.log.levels.INFO)
         end,
-        desc = "📁 Run all tests in current directory",
+        desc = "Run all tests in current directory",
       }
       
       maps.n["<Leader>pc"] = {
@@ -113,7 +113,7 @@ return {
           
           vim.notify("Checking Python syntax", vim.log.levels.INFO)
         end,
-        desc = "✅ Check Python syntax",
+        desc = "Check Python syntax",
       }
       
       maps.n["<Leader>pf"] = {
@@ -135,7 +135,7 @@ return {
           
           vim.notify("Formatting Python file with black", vim.log.levels.INFO)
         end,
-        desc = "🎨 Format Python file with black",
+        desc = "Format Python file with black",
       }
       
       maps.n["<Leader>pl"] = {
@@ -157,7 +157,7 @@ return {
           
           vim.notify("Linting Python file with flake8", vim.log.levels.INFO)
         end,
-        desc = "🔍 Lint Python file with flake8",
+        desc = "Lint Python file with flake8",
       }
       
       maps.n["<Leader>pv"] = {
@@ -171,21 +171,21 @@ return {
           
           vim.notify("Showing Python version and virtual environment", vim.log.levels.INFO)
         end,
-        desc = "📋 Show Python version and virtual environment",
+        desc = "Show Python version and virtual environment",
       }
       
       maps.n["<Leader>ps"] = {
         function()
           vim.cmd("VenvSelect")
         end,
-        desc = "🔄 Select Python virtual environment",
+        desc = "Select Python virtual environment",
       }
       
       maps.n["<Leader>pa"] = {
         function()
           vim.cmd("VenvSelectCached")
         end,
-        desc = "⚡ Activate cached virtual environment",
+        desc = "Activate cached virtual environment",
       }
       
       maps.n["<Leader>pm"] = {
@@ -197,7 +197,7 @@ return {
           
           vim.notify("Opening Python REPL", vim.log.levels.INFO)
         end,
-        desc = "🔧 Open Python REPL",
+        desc = "Open Python REPL",
       }
       
       opts.mappings = maps
