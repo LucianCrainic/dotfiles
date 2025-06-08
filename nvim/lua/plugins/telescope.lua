@@ -192,6 +192,126 @@ return {
         desc = "Find buffers with split options",
       }
 
+      -- Find references of the symbol under cursor
+      maps.n["<Leader>fr"] = {
+        function()
+          require("telescope.builtin").lsp_references()
+        end,
+        desc = "Find references",
+      }
+
+      -- Find references with split options
+      maps.n["<Leader>frs"] = {
+        function()
+          require("telescope.builtin").lsp_references({
+            attach_mappings = function(_, map)
+              -- Open in vertical split to the right
+              map("i", "<C-v>", function(prompt_bufnr)
+                local actions = require("telescope.actions")
+                local action_state = require("telescope.actions.state")
+                local selection = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+                vim.cmd("vsplit " .. vim.fn.fnameescape(selection.filename))
+                -- Set cursor position after a small delay to ensure file is loaded
+                vim.schedule(function()
+                  vim.api.nvim_win_set_cursor(0, {selection.lnum, selection.col})
+                end)
+              end)
+              -- Open in horizontal split below
+              map("i", "<C-x>", function(prompt_bufnr)
+                local actions = require("telescope.actions")
+                local action_state = require("telescope.actions.state")
+                local selection = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+                vim.cmd("split " .. vim.fn.fnameescape(selection.filename))
+                -- Set cursor position after a small delay to ensure file is loaded
+                vim.schedule(function()
+                  vim.api.nvim_win_set_cursor(0, {selection.lnum, selection.col})
+                end)
+              end)
+              return true
+            end,
+          })
+        end,
+        desc = "Find references with split options",
+      }
+
+      -- Quick references with vertical split
+      maps.n["<Leader>frv"] = {
+        function()
+          require("telescope.builtin").lsp_references({
+            attach_mappings = function(_, map)
+              map("i", "<CR>", function(prompt_bufnr)
+                local actions = require("telescope.actions")
+                local action_state = require("telescope.actions.state")
+                local selection = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+                vim.cmd("vsplit " .. vim.fn.fnameescape(selection.filename))
+                -- Set cursor position after a small delay to ensure file is loaded
+                vim.schedule(function()
+                  vim.api.nvim_win_set_cursor(0, {selection.lnum, selection.col})
+                end)
+              end)
+              return true
+            end,
+          })
+        end,
+        desc = "Find references and open in vertical split",
+      }
+
+      -- Quick references with horizontal split
+      maps.n["<Leader>frx"] = {
+        function()
+          require("telescope.builtin").lsp_references({
+            attach_mappings = function(_, map)
+              map("i", "<CR>", function(prompt_bufnr)
+                local actions = require("telescope.actions")
+                local action_state = require("telescope.actions.state")
+                local selection = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+                vim.cmd("split " .. vim.fn.fnameescape(selection.filename))
+                -- Set cursor position after a small delay to ensure file is loaded
+                vim.schedule(function()
+                  vim.api.nvim_win_set_cursor(0, {selection.lnum, selection.col})
+                end)
+              end)
+              return true
+            end,
+          })
+        end,
+        desc = "Find references and open in horizontal split",
+      }
+
+      -- Additional LSP-related telescope mappings
+      maps.n["<Leader>fd"] = {
+        function()
+          require("telescope.builtin").lsp_definitions()
+        end,
+        desc = "Find definitions",
+      }
+
+      maps.n["<Leader>fi"] = {
+        function()
+          require("telescope.builtin").lsp_implementations()
+        end,
+        desc = "Find implementations",
+      }
+
+      maps.n["<Leader>ft"] = {
+        function()
+          require("telescope.builtin").lsp_type_definitions()
+        end,
+        desc = "Find type definitions",
+      }
+
+      -- Resume last telescope search
+      maps.n["<Leader>f."] = {
+        function()
+          require("telescope.builtin").resume()
+        end,
+        desc = "Resume last telescope search",
+      }
+
       opts.mappings = maps
       return opts
     end,
