@@ -36,7 +36,7 @@ return {
       maps.n = maps.n or {}
       
       -- Robot Framework specific mappings
-      maps.n["<Leader>r"] = { desc = "🤖 Robot Framework" }
+      maps.n["<Leader>r"] = { desc = "Robot Framework" }
       
       maps.n["<Leader>rt"] = {
         function()
@@ -100,7 +100,7 @@ return {
           
           run_robot_test()
         end,
-        desc = "🚀 Run current Robot Framework test case",
+        desc = "Run current Robot Framework test case",
       }
       
       maps.n["<Leader>rf"] = {
@@ -125,7 +125,7 @@ return {
           
           vim.notify("Running all tests in file", vim.log.levels.INFO)
         end,
-        desc = "📄 Run all Robot Framework tests in current file",
+        desc = "Run all Robot Framework tests in current file",
       }
       
       maps.n["<Leader>rd"] = {
@@ -143,7 +143,7 @@ return {
           
           vim.notify("Running all tests in directory", vim.log.levels.INFO)
         end,
-        desc = "📁 Run all Robot Framework tests in current directory",
+        desc = "Run all Robot Framework tests in current directory",
       }
       
       maps.n["<Leader>rs"] = {
@@ -205,9 +205,37 @@ return {
           
           vim.notify(string.format("Dry run for test: %s", test_name), vim.log.levels.INFO)
         end,
-        desc = "🧪 Dry run current Robot Framework test case",
+        desc = "Dry run current Robot Framework test case",
       }
       
+      maps.n["<Leader>rl"] = {
+        function()
+          local current_file = vim.fn.expand("%:p")
+          local file_extension = vim.fn.expand("%:e")
+          
+          if file_extension ~= "robot" and file_extension ~= "resource" then
+            vim.notify("Not a Robot Framework file", vim.log.levels.WARN)
+            return
+          end
+          
+          local output_dir = vim.fn.expand("%:p:h") .. "/results"
+          local log_file = output_dir .. "/log.html"
+          
+          -- Check if log file exists
+          if vim.fn.filereadable(log_file) == 0 then
+            vim.notify("Log file not found: " .. log_file .. "\nRun a test first to generate the log.", vim.log.levels.WARN)
+            return
+          end
+          
+          -- Open log file in default browser (macOS)
+          local cmd = "open " .. vim.fn.shellescape(log_file)
+          vim.fn.system(cmd)
+          
+          vim.notify("Opening log file in browser: " .. log_file, vim.log.levels.INFO)
+        end,
+        desc = "Open Robot Framework log file in browser",
+      }
+
       -- Set up Robot Framework file type detection and syntax
       vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
         pattern = {"*.robot", "*.resource"},
