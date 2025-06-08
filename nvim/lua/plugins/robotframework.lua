@@ -236,6 +236,93 @@ return {
         desc = "Open Robot Framework log file in browser",
       }
 
+      maps.n["<Leader>rfd"] = {
+        function()
+          local current_file = vim.fn.expand("%:p")
+          local file_extension = vim.fn.expand("%:e")
+          
+          if file_extension ~= "robot" and file_extension ~= "resource" then
+            vim.notify("Not a Robot Framework file", vim.log.levels.WARN)
+            return
+          end
+          
+          -- Save current cursor position
+          local cursor_pos = vim.fn.getpos(".")
+          
+          -- First, unfold everything to start fresh
+          vim.cmd("normal! zR")
+          
+          local folded_count = 0
+          local lines = vim.fn.getline(1, "$")
+          local doc_ranges = {}
+          
+          -- First pass: Find all documentation sections
+          for i, line in ipairs(lines) do
+            -- Match documentation lines (case insensitive)
+            if line:match("^%s*Documentation") or line:match("^%s*DOCUMENTATION") or 
+               line:match("^%s*%[Documentation%]") or line:match("^%s*%[DOCUMENTATION%]") then
+              
+              -- Find the end of the documentation section
+              local doc_end = i
+              for j = i + 1, #lines do
+                local next_line = lines[j]
+                -- Documentation continues if line starts with "..." or is indented continuation
+                if next_line:match("^%s*%.%.%.") or 
+                   (next_line:match("^%s+") and not next_line:match("^%s*$") and 
+                    not next_line:match("^%s*%[") and not next_line:match("^%s*Tags") and
+                    not next_line:match("^%s*Setup") and not next_line:match("^%s*Teardown") and
+                    not next_line:match("^%s*Template") and not next_line:match("^%s*Timeout")) then
+                  doc_end = j
+                else
+                  break
+                end
+              end
+              
+              -- Store the range if it spans multiple lines
+              if doc_end > i then
+                table.insert(doc_ranges, {start = i, finish = doc_end})
+              end
+            end
+          end
+          
+          -- Second pass: Create folds in reverse order to avoid line number shifts
+          for k = #doc_ranges, 1, -1 do
+            local range = doc_ranges[k]
+            -- Go to the start of the documentation
+            vim.fn.cursor(range.start, 1)
+            -- Select the range
+            vim.cmd("normal! V")
+            vim.fn.cursor(range.finish, vim.fn.col("$"))
+            -- Create the fold
+            vim.cmd("normal! zf")
+            folded_count = folded_count + 1
+          end
+          
+          -- Restore cursor position
+          vim.fn.setpos(".", cursor_pos)
+          
+          vim.notify(string.format("Folded %d documentation section(s)", folded_count), vim.log.levels.INFO)
+        end,
+        desc = "Fold all documentation sections",
+      }
+
+      maps.n["<Leader>rfu"] = {
+        function()
+          local current_file = vim.fn.expand("%:p")
+          local file_extension = vim.fn.expand("%:e")
+          
+          if file_extension ~= "robot" and file_extension ~= "resource" then
+            vim.notify("Not a Robot Framework file", vim.log.levels.WARN)
+            return
+          end
+          
+          -- Unfold all folds in the current buffer
+          vim.cmd("normal! zR")
+          vim.notify("Unfolded all sections", vim.log.levels.INFO)
+        end,
+        desc = "Unfold all sections",
+      }
+
       -- Set up Robot Framework file type detection and syntax
       vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
         pattern = {"*.robot", "*.resource"},
