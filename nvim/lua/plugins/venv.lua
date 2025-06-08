@@ -2,7 +2,7 @@ return {
   'linux-cultist/venv-selector.nvim',
   dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
   opts = {
-    name = "venv",
+    },
     auto_refresh = true,
     search_venv_managers = true,
     search_workspace = true,
@@ -21,8 +21,7 @@ return {
     -- Set Python path automatically when switching venvs
     set_environment_variables = true,
   },
-  event = 'VeryLazy',
-  --branch = "regexp"
+  lazy = false,
   keys = {
   },
 }
