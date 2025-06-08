@@ -54,6 +54,12 @@ return {
           end,
           desc = "Close buffer from tabline",
         },
+        
+        -- Close current buffer
+        ["<Leader>c"] = {
+          function() require("astrocore.buffer").close() end,
+          desc = "Close current buffer",
+        },
 
       },
     },
