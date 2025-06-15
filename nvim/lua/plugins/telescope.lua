@@ -1,5 +1,30 @@
 return {
   {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        layout_strategy = "vertical",
+        color_devicons = true,
+        scroll_strategy = 'cycle',
+        sorting_strategy = 'ascending',
+        layout_config = {
+          vertical = {
+            width = 0.9,
+            height = 0.9,
+            preview_height = 0.7,
+            preview_cutoff = 0.3,
+            mirror = false,
+          },
+        },
+        height = 0.94,
+        width = 0.86,
+      },
+      preview = {
+        file_size_limit = 1.0, -- MB
+      },
+    },
+  },
+  {
     "AstroNvim/astrocore",
     opts = function(_, opts)
       local maps = opts.mappings or {}
