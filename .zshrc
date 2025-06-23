@@ -90,6 +90,8 @@ alias -- -="cd -"
 
 alias p="pwd"
 alias v="nvim"
+alias lg="lazygit"
+alias ld="lazydocker"
 
 # Aliases: ls
 alias l='eza -1A --group-directories-first --color=always --git-ignore'
@@ -124,8 +126,6 @@ gcm() { git commit --message "$*" }
 alias ta='tmux attach'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session -s'
-
-alias rg="rg --hidden --smart-case --glob='!.git/' --no-search-zip --trim --colors=line:fg:black --colors=line:style:bold --colors=path:fg:magenta --colors=match:style:nobold"
 
 # Work stuff
 export GITLAB_CONAN_PASSWORD="3vmZpg92QMSUJ913cXms"
