@@ -12,7 +12,8 @@ return {
         "docker_compose_language_service",
         "bash-language-server",
         "yaml-language-server",
-        "cmake-language-server"
+        "cmake-language-server",
+        "zls"
       },
     },
   },
