@@ -1,4 +1,3 @@
-# [ZINIT]
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
 	   mkdir -p "$(dirname $ZINIT_HOME)"
@@ -6,10 +5,6 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-# https://askubuntu.com/questions/1515760/unknown-option-bash-when-opening-the-terminal#
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# [PLUGINS]
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -44,10 +39,10 @@ function y() {
 export EDITOR=nvim
 
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---color=selected-bg:#45475a \
+--color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+--color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+--color=marker:#babbf1,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
+--color=selected-bg:#51576d \
 --multi \
 --layout=reverse \
 --border=rounded \
@@ -56,20 +51,82 @@ export FZF_DEFAULT_OPTS=" \
 --marker='*' \
 --bold"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-#zstyle ':completion:*' menu no
-#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-#zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+ff() {
+    local file
+    file=$(find . -type f | fzf --preview 'cat {}' --preview-window right:60%:wrap)
+    [[ -n "$file" ]] && $EDITOR "$file"
+}
 
-alias ls='ls --color'
+fd() {
+    local dir
+    dir=$(find . -type d | fzf --preview 'ls -la {}' --preview-window right:60%:wrap)
+    [[ -n "$dir" ]] && cd "$dir"
+}
 
-# [SHELL INTEGRATIONS]
+if command -v fzf >/dev/null 2>&1; then
+    bindkey '^T' ff                   # Ctrl+T for custom file fuzzy search with preview
+    bindkey '^R' fzf-history-widget   # Ctrl+R for history fuzzy search
+    bindkey '^[c' fd                  # Alt+C for directory fuzzy search
+fi
+
 eval "$(starship init zsh)"
 # https://askubuntu.com/questions/1515760/unknown-option-bash-when-opening-the-terminal
 eval "$(zoxide init zsh)"
 
-# [CONAN]
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+alias p="pwd"
+alias v="nvim"
+alias lg="lazygit"
+alias ld="lazydocker"
+
+# Aliases: ls
+alias l='eza -1A --group-directories-first --color=always --git-ignore'
+alias ls='l'
+alias la='l -l --time-style="+%Y-%m-%d %H:%M" --no-permissions --octal-permissions'
+alias tree='l --tree'
+
+# Aliases: git
+alias ga='git add'
+alias gap='ga --patch'
+alias gb='git branch'
+alias gba='gb --all'
+alias gc='git commit'
+alias gca='gc --amend --no-edit'
+alias gce='gc --amend'
+alias gco='git checkout'
+alias gcl='git clone --recursive'
+alias gd='git diff --output-indicator-new=" " --output-indicator-old=" "'
+alias gds='gd --staged'
+alias gi='git init'
+alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'
+alias gm='git merge'
+alias gn='git checkout -b'  # new branch
+alias gp='git push'
+alias gr='git reset'
+alias gs='git status --short'
+alias gu='git pull'
+
+gcm() { git commit --message "$*" }
+
+# Aliases: tmux
+alias ta='tmux attach'
+alias tl='tmux list-sessions'
+alias tn='tmux new-session -s'
+
+# Work stuff
 export GITLAB_CONAN_PASSWORD="3vmZpg92QMSUJ913cXms"
 alias CONAN_START='conan user ldcrainic -r gitlab -p $GITLAB_CONAN_PASSWORD'

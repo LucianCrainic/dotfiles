@@ -14,5 +14,4 @@ max_height = 1000
 edit = [
 	{ run = '${EDITOR:=nvim} "$@"', desc = "$EDITOR", block = true },
 	{ run = 'code "$@"', orphan = true },
-
 ]
