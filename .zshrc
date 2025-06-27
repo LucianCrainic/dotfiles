@@ -126,7 +126,36 @@ gcm() { git commit --message "$*" }
 alias ta='tmux attach'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session -s'
-
-# Work stuff
+ 
+# Conan settings for work
 export GITLAB_CONAN_PASSWORD="3vmZpg92QMSUJ913cXms"
+export CONAN_ENV_PATH='/home/ldcrainic/.env/conan/bin/activate'
+export CONAN_USER="ldcrainic"
 alias CONAN_START='conan user ldcrainic -r gitlab -p $GITLAB_CONAN_PASSWORD'
+function conan_init() {
+    source "$CONAN_ENV_PATH"
+    CONAN_START
+    figlet -c -f ANSIShadow "CONGO"
+}
+alias congo="conan_init"
+ 
+# This handles the docker problems on my work machine that uses podman
+export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
+ 
+ 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+ 
+ 
+# Virtual Env Wrapper settings for Python
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_VIRTUALENV=~/.local/bin/virtualenv
+source ~/.local/bin/virtualenvwrapper.sh
+ 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+ 
+ 
