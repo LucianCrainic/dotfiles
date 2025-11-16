@@ -39,10 +39,10 @@ function y() {
 export EDITOR=nvim
 
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
---color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
---color=marker:#babbf1,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
---color=selected-bg:#51576d \
+--color=bg+:#3c3836,bg:#282828,spinner:#b8bb26,hl:#fb4934 \
+--color=fg:#ebdbb2,header:#b8bb26,info:#83a598,pointer:#d79921 \
+--color=marker:#b16286,fg+:#ebdbb2,prompt:#d79921,hl+:#fb4934 \
+--color=selected-bg:#504945 \
 --multi \
 --layout=reverse \
 --border=rounded \
