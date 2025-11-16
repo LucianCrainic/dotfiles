@@ -1,56 +1,20 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "morhetz/gruvbox",
   priority = 1000,
+  init = function()
+    vim.g.gruvbox_contrast_dark = "medium"
+    vim.g.gruvbox_transparent_bg = 1
+  end,
   config = function()
-    require("catppuccin").setup({
-      flavour = "frappe", -- latte, frappe, macchiato, mocha
-      background = { -- :h background
-        light = "latte",
-        dark = "frappe",
-      },
-      transparent_background = true,
-      show_end_of_buffer = false,
-      term_colors = true,
-      dim_inactive = {
-        enabled = false,
-        shade = "dark",
-        percentage = 0.15,
-      },
-      no_italic = false,
-      no_bold = false,
-      no_underline = false,
-      styles = {
-        comments = { "italic" },
-        conditionals = { "italic" },
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
-      },
-      integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        treesitter = true,
-        notify = false,
-        mini = {
-          enabled = true,
-          indentscope_color = "",
-        },
-        telescope = {
-          enabled = true,
-        },
-        lsp_trouble = true,
-        which_key = true,
-      },
-    })
-    vim.cmd.colorscheme "catppuccin"
+    vim.o.background = "dark"
+    vim.cmd.colorscheme "gruvbox"
+    -- Ensure transparency by removing background from Normal and NormalNC
+    local hl = vim.api.nvim_get_hl(0, { name = "Normal" })
+    hl.bg = nil
+    vim.api.nvim_set_hl(0, "Normal", hl)
+    
+    local hl_nc = vim.api.nvim_get_hl(0, { name = "NormalNC" })
+    hl_nc.bg = nil
+    vim.api.nvim_set_hl(0, "NormalNC", hl_nc)
   end,
 }
