@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if ! command -v fzf >/dev/null 2>&1; then
+  tmux choose-tree -Zw
+  exit 0
+fi
+
+window=$(
+  tmux list-windows -a \
+    -F '#{session_name}:#{window_index}  [#{window_index}] #{window_name}' |
+    fzf --height=100% --layout=reverse --border \
+      --prompt='Window > ' \
+      --header='Enter: switch window'
+)
+
+target=$(printf '%s\n' "$window" | cut -d' ' -f1)
+[ -n "$target" ] && tmux switch-client -t "$target"

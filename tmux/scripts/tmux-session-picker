@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if ! command -v fzf >/dev/null 2>&1; then
+  tmux choose-tree -Zw
+  exit 0
+fi
+
+session=$(
+  tmux list-sessions -F '#{session_name}' |
+    fzf --height=100% --layout=reverse --border \
+      --prompt='Session > ' \
+      --header='Enter: switch session'
+)
+
+[ -n "$session" ] && tmux switch-client -t "$session"
